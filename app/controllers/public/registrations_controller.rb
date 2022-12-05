@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 class Public::RegistrationsController < Devise::RegistrationsController
+  before_action :enscure_nomal_user, only: %i[update destroy]
+  
+  def enscure_nomal_user
+    if resource.email == 'guest@example.com'
+      redirect_to root_path, alert: 'ゲストユーザーは更新・削除はできません。'
+    end
+  end
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
