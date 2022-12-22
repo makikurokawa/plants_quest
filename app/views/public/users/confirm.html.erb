@@ -1,0 +1,12 @@
+<div class="container text-center my-5">
+  <h4 class="font-weight-bold">本当に退会しますか？</h4>
+    <div class="message">
+    <p>退会すると、会員情報や</p>
+    <p>これまでの投稿記事が閲覧できなくなります。</p>
+    <p>退会する場合は、「退会する」をクリックしてください。</p>
+    </div>
+    <%= link_to "退会しない", users_my_page_path, class: "btn btn-md btn-primary" %>
+    <%= link_to "退会する", users_destroy_path, method: :patch, class: "btn btn-md btn-danger" %>
+  </div>
+
+</div>
