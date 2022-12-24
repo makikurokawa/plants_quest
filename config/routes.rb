@@ -17,8 +17,10 @@ Rails.application.routes.draw do
     patch 'users/infomation' => 'users#update'
     get 'users/confirm' => 'users#confirm'
     patch 'users/destroy' => 'users#destroy'
-    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy]
-    resources :favorites, only: [:index, :update, :create, :destroy]
+    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+      resources :post_comments, only: [:create, :destroy]
+    end
+    resources :favorites, only: [:index,:create, :destroy]
   end
 
   devise_for :admins, controllers: {

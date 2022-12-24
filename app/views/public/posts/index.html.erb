@@ -4,6 +4,8 @@
   </div>
   <% @posts.each do |post| %>
     <%= post.title %>
-    <%= link_to "記事詳細", post_path(:id), class: "btn btn-sm btn-danger" 
+    <p>ユーザーネーム：<%= post.user.name %></p>
+    <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
+    <%= link_to "記事詳細", post_path(:id), class: "btn btn-sm btn-danger"
   <% end %>
 </div>
