@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row">
+    <h4 class="my-5">投稿記事一覧</h4>
+  </div>
+  <% @posts.each do |post| %>
+    <%= post.title %>
+    <%= link_to "記事詳細", post_path(:id), class: "btn btn-sm btn-danger" 
+  <% end %>
+</div>
