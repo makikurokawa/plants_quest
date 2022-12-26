@@ -2,13 +2,14 @@ Rails.application.routes.draw do
   root to: "public/homes#top"
   get '/about' => 'public/homes#about', as: 'about'
 
-  devise_scope :public do
-    post 'users/guest_sign_in' => 'public/sessions#guest_sign_in'
+  devise_scope :user do
+    post 'users/guest_sign_in' => 'public/sessions#new_guest'
   end
 
   devise_for :users, controllers: {
   registrations: "public/registrations",
   passwords: 'public/passwords'
+
 }
 
   scope module: :public do
