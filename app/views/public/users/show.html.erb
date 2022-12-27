@@ -4,37 +4,40 @@
   </div>
   <div class="row">
     <table class="table table-borderless">
-  <tr>
-    <th style="width: 10%">登録情報</th>
-    <td><%= link_to "編集する", users_infomation_edit_path, class: 'btn btn-md btn-success px-3' %></td>
-  </tr>
-</table>
-<table class="table table-bordered border-dark col-6">
-  <tbody>
-    <tr>
-      <th class="table-secondary col-2">氏名</th><td class="col-4"><%= @user.name %></td>
-    </tr>
-    <tr>
-      <th class="table-secondary">ニックネーム</th><td><%= @user.nickname %></td>
-    </tr>
-    <tr>
-      <th class="table-secondary">自己紹介文</th><td><%= @user.introduction %></td>
-    </tr>
-    <tr>
-      <th class="table-secondary">メールアドレス</th><td><%= @user.email %></td>
-    </tr>
-  </tbody>
-</table>
-<table class="table table-borderless">
-  <tr>
-    <th style="width: 10%">投稿済み記事一覧</th>
-    <td><%= link_to "一覧をみる", posts_path, class: 'btn btn-md btn-primary px-3' %></td>
-  </tr>
-  <tr>
-    <th style="width: 10%">いいね</th>
-    <td><%= link_to "一覧をみる", favorites_path, class: 'btn btn-md btn-primary px-3' %></td>
-  </tr>
-</table>
+      <tr>
+        <th style="width: 10%">登録情報</th>
+       <td><%= link_to "編集する", users_infomation_edit_path, class: 'btn btn-md btn-success px-3' %></td>
+      </tr>
+    </table>
+    <table class="table table-bordered border-dark col-6">
+      <tbody>
+        <tr>
+          <th class="table-secondary col-2">氏名</th><td class="col-4"><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th class="table-secondary">ニックネーム</th><td><%= @user.nickname %></td>
+        </tr>
+        <tr>
+          <th class="table-secondary">自己紹介文</th><td><%= @user.introduction %></td>
+        </tr>
+        <tr>
+          <th class="table-secondary">メールアドレス</th><td><%= @user.email %></td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-borderless">
+      <tr>
+        <th style="width: 10%">投稿済み記事一覧</th>
+        <td><%= link_to "一覧をみる", posts_path, class: 'btn btn-md btn-primary px-3' %></td>
+      </tr>
+      <tr>
+        <th style="width: 10%">いいね</th>
+        <td><%= link_to "一覧をみる", favorites_path, class: 'btn btn-md btn-primary px-3' %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="row mx-auto">
+    <%= link_to "新規投稿", new_post_path, class: 'btn btn-lg btn-warning px-5 my-5' %>
   </div>
 
 </div>

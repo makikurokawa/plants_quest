@@ -20,6 +20,8 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.all
+
+    @posts = @posts.where('title LIKE ?', "%#{params[search]}%") if params[:search].permit?
   end
 
   def edit
@@ -39,7 +41,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :contents, :status)
+    params.require(:post).permit(:title, :contents, :status, image: [])
   end
 
 end

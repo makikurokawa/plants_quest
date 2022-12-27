@@ -2,10 +2,21 @@
   <div class="row">
     <h4 class="my-5">投稿記事一覧</h4>
   </div>
+  <% form_with url: posts_path, method: :get, local: true do |form| %>
+    <%= form.text_field :search %>
+    <%= form.submit '検索', name: nil %>
+  <% end %>
+
   <% @posts.each do |post| %>
     <%= post.title %>
+    <% if post.image.attached? %>
+      <% post.image.each do |image| %>
+        <%= image_tag image.variant(resize: '300x300') %>
+      <% end %>
+    <% end %>
+    <%= post.contents %>
     <p>ユーザーネーム：<%= post.user.name %></p>
     <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
-    <%= link_to "記事詳細", post_path(:id), class: "btn btn-sm btn-danger"
+    <%= link_to "記事詳細", post_path(:id), class: "btn btn-sm btn-danger" %>
   <% end %>
 </div>
