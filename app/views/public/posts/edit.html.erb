@@ -1,0 +1,5 @@
+ <%= f.collection_check_boxes(:tag_ids, @post.tags, :id, :name) do |tag| %>
+        <%= tag.label do %>
+          <%= tag.check_box + tab.text %>
+        <% end %>
+      <% end %>

@@ -47,15 +47,9 @@
               <%= link_to "会員一覧", admin_users_path %>
             </li>
             <li class="nav-item px-3">
-              <%= link_to "タグ管理", admin_tags_path %>
-            </li>
-            <li class="nav-item px-3">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
             </li>
           <% else %>
-            <li class="nav-item px-3">
-              <%= link_to "About", about_path %>
-            </li>
             <li class="nav-item px-3">
               <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post %>
             </li>

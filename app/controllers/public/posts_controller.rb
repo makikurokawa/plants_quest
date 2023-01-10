@@ -19,9 +19,9 @@ class Public::PostsController < ApplicationController
   end
 
   def index
+    @search = Post.ransack(params[:search])
+    @posts = @search.result(distinct: true)
     @posts = Post.all
-
-    @posts = @posts.where('title LIKE ?', "%#{params[search]}%") if params[:search].permit?
   end
 
   def edit
