@@ -2,6 +2,9 @@
   <div class="row">
     <h4 class="my-5">
       <%= @post.title %>
+      <%= @post.tags.each do |tag| %>
+        <span><%= tag.tag_name %></span>
+      <% end %>
     </h4>
   </div>
   <div class="images">

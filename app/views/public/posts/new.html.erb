@@ -4,10 +4,20 @@
   </div>
     <%= form_with model: @post do |f| %>
       <%= f.file_field :images, multiple: true, class: "w-100" %>
+      <%= "↑ Shiftキーを押しながら画像を複数選択してください。" %>
       <div class="input-group mb-3 mt-4">
         <%= f.text_field :title, class:"form-control", placeholder:"タイトル" %>
       </div>
       <%= f.text_area :contents, class:"form-control", rows:"3", placeholder:"投稿内容" %>
+      
+      <%= collection_check_boxes(:tag_ids, Tag.all, :id, :tag_name) do |tag| %>
+        <div class="form-check">
+          <%= tag.label class: "form-check-label" do %>
+            <%= tag.check_box class="form-check-input" %>
+            <%= tag.text %>
+          <% end %>
+        </div>
+      <% end %>
       <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info my-4" %>
     <% end %>
 </div>
