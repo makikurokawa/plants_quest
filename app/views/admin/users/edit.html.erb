@@ -4,35 +4,19 @@
       <%= @user.name %>さんの会員情報編集
     </h4>
   </div>
-  <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>
+  <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
     <div class="form-group">
       <div class="row my-3">
         <label class="col-2">会員ID</label>
-        <label class="col-1"><%= @customer.id %></label>
+        <label class="col-1"><%= @user.id %></label>
       </div>
       <div class="row my-3">
         <%= f.label "氏名", class: "col-2" %>
-        <%= f.text_field :last_name, class: 'form-control name col-3' %>
-        <div class="col-1"></div>
-        <%= f.text_field :first_name, class: 'form-control name col-3' %>
+        <%= f.text_field :name, class: 'form-control name col-3' %>
       </div>
       <div class="row my-3">
-        <%= f.label "フリガナ", class: "col-2" %>
-        <%= f.text_field :last_name_kana, class: 'form-control name_kana col-3' %>
-        <div class="col-1"></div>
-        <%= f.text_field :first_name_kana, class: 'form-control name_kana col-3' %>
-      </div>
-      <div class="row my-3">
-        <%= f.label "郵便番号", class: "col-2" %>
-        <%= f.text_field :postal_code, class: 'form-control postal_code col-3' %>
-      </div>
-      <div class="row my-3">
-        <%= f.label "住所", class: "col-2" %>
-        <%= f.text_field :address, class: 'form-control address col-8' %>
-      </div>
-      <div class="row my-3">
-        <%= f.label "電話番号", class: "col-2" %>
-        <%= f.text_field :telephone_number, class: 'form-control telephone_number col-3' %>
+        <%= f.label "ニックネーム", class: "col-2" %>
+        <%= f.text_field :nickname, class: 'form-control name col-3' %>
       </div>
       <div class="row my-3">
         <%= f.label "メールアドレス", class: "col-2" %>
