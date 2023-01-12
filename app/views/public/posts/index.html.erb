@@ -8,7 +8,12 @@
     <%= f.submit %>
   <% end %>
   
-  <%= 
+  <<%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
+    <% Tag.all.each do |t| %>
+        <li><%= check_box :tag_ids, t.tag_name %><%= t.tag_name %></li>
+    <% end %>
+    <%= submit_tag '検索' %>
+<% end %>
 
   <% @posts.each do |post| %>
     <%= post.title %>

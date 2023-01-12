@@ -22,6 +22,15 @@ class Public::PostsController < ApplicationController
     @search = Post.ransack(params[:search])
     @posts = @search.result(distinct: true)
     @posts = Post.all
+    if params[tag_ids]
+      @posts = []
+      params[tag_ids].each do |key, value|
+        if value == "1"
+          post_tags = Tag.find_by(tag_name: key).posts
+          @posts = @posts.enpty? ? post_tags : @posts & post_tags
+        end
+      end
+    end
   end
 
   def edit
@@ -41,7 +50,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :contents, :status, image: [], tag_ids: [])
+    params.require(:post).permit(:title, :contents, :status, images: [],tag_attributes: [:tag_id, :_destroy])
   end
 
 end
