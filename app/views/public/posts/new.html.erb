@@ -2,7 +2,7 @@
   <div class="row">
     <h5 class="text-dark bg-light m-4 mb-0">新規投稿</h5>
   </div>
-    <%= form_with model: @post do |f| %>
+    <%= form_with model: @post, local: true do |f| %>
       <%= f.file_field :images, multiple: true, class: "w-100" %>
       <%= "↑ Shiftキーを押しながら画像を複数選択してください。" %>
       <div class="input-group mb-3 mt-4">
@@ -10,14 +10,14 @@
       </div>
       <%= f.text_area :contents, class:"form-control", rows:"3", placeholder:"投稿内容" %>
 
-      <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :tag_name) do |tag| %>
-        <div class="form-check">
-          <%= tag.label class: "form-check-label" do %>
-            <%= tag.check_box class: "form-check-input" %>
-            <%= tag.text %>
-          <% end %>
-        </div>
+      <%= f.fields_for :post_tags, @post.post_tags.build do |post_tag| %>
+      <div class="field">
+        <%= render 'post_tag_fields', f: post_tag %>
+      </div>
       <% end %>
+      <div class="links">
+        <%= link_to_add_association 'タグを追加', f, :post_tags %>
+      </div>
       <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info my-4" %>
     <% end %>
 </div>

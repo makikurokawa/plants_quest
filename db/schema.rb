@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(version: 2022_12_24_073601) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "tag_id", null: false
     t.string "title", null: false
     t.text "contents", null: false
     t.integer "status", default: 0

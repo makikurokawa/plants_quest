@@ -22,7 +22,7 @@ class Public::PostsController < ApplicationController
     @search = Post.ransack(params[:search])
     @posts = @search.result(distinct: true)
     @posts = Post.all
-    if params[tag_ids]
+    if params[:tag_ids]
       @posts = []
       params[tag_ids].each do |key, value|
         if value == "1"
@@ -50,7 +50,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :contents, :status, images: [],tag_attributes: [:tag_id, :_destroy])
+    params.require(:post).permit(:title, :contents, :status, images: [], post_tags_attributes: [:tag_id, :_destroy])
   end
 
 end

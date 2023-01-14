@@ -1,11 +1,11 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
-  has_many :post_tags, dependent: :destroy
   has_many_attached :images
-  has_many :tags, inverse_of: :event, dependent: :destroy
-  accepts_nested_attributes_for :tags, allow_destroy: true
-  validates_associated :tags
+  has_many :post_tags
+  has_many :tags, through: :post_tags
+  accepts_nested_attributes_for :post_tags, allow_destroy: true
+  has_many :post_comments
 
 
   def get_image(width,height)

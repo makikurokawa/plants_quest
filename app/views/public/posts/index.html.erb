@@ -7,7 +7,7 @@
     <%= f.search_field :title %>
     <%= f.submit %>
   <% end %>
-  
+
   <<%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
     <% Tag.all.each do |t| %>
         <li><%= check_box :tag_ids, t.tag_name %><%= t.tag_name %></li>
@@ -17,8 +17,8 @@
 
   <% @posts.each do |post| %>
     <%= post.title %>
-    <% if post.image.attached? %>
-      <% post.image.each do |image| %>
+    <% if post.images.attached? %>
+      <% post.images.each do |image| %>
         <%= image_tag image.variant(resize: '300x300') %>
       <% end %>
     <% end %>
