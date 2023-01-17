@@ -20,8 +20,8 @@ Rails.application.routes.draw do
     patch 'users/destroy' => 'users#destroy'
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resources :post_comments, only: [:create, :destroy]
+      resources :favorites, only: [:create, :destroy]
     end
-    resources :favorites, only: [:index,:create, :destroy]
   end
 
   devise_for :admins, controllers: {

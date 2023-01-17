@@ -27,17 +27,43 @@
     </table>
     <table class="table table-borderless">
       <tr>
-        <th style="width: 10%">投稿済み記事一覧</th>
+        <th style="width: 20%">投稿済み記事一覧</th>
         <td><%= link_to "一覧をみる", posts_path, class: 'btn btn-md btn-primary px-3' %></td>
-      </tr>
-      <tr>
-        <th style="width: 10%">いいね</th>
-        <td><%= link_to "一覧をみる", favorites_path, class: 'btn btn-md btn-primary px-3' %></td>
       </tr>
     </table>
   </div>
   <div class="row mx-auto">
     <%= link_to "新規投稿", new_post_path, class: 'btn btn-lg btn-warning px-5 my-5' %>
   </div>
+
+
+    <div class="table-name">
+      <h4>いいね（ブックマーク）一覧</h4>
+    </div>
+  <div class="row col-12">
+    <table>
+      <thead>
+        <tr>
+          <th class="col-5">投稿者名</th>
+          <th class="col-5">タイトル</th>
+          <th class="col-5">本文</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @favorites.each do |favorite| %>
+          <tr>
+            <td><%= favorite.post.user.nickname %></td>
+            <td>
+              <%= link_to post_path(favorite.post) do %>
+                <%= favorite.post.title %>
+              <% end %>
+            </td>
+            <td><%= favorite.post.contents %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
 
 </div>

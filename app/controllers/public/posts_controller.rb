@@ -6,10 +6,18 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if @post.save
-      redirect_to posts_path
+    if params[:post]
+      if @post.save(context: :publicize)
+        redirect_to posts_path, notice: "投稿しました！"
+      else
+        render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
+      end
     else
-      render :new
+      if @post.update(is_draft: true)
+        redirect_to users_mypage_path, notice: "下書きを保存しました！"
+      else
+        render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
+      end
     end
   end
 

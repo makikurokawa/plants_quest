@@ -15,4 +15,14 @@ class Post < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
+
+  def favorited_by?(user)
+    favorites.where(user_id: user).exists?
+  end
+  
+  with_options presence: true, on: :publicize do
+    validates :title
+    validates :contents
+  end
+  validates :title, length: { maximum: 20 }, on: :publicize
 end

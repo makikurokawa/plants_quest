@@ -2,22 +2,26 @@
   <div class="row">
     <h5 class="text-dark bg-light m-4 mb-0">新規投稿</h5>
   </div>
-    <%= form_with model: @post, local: true do |f| %>
-      <%= f.file_field :images, multiple: true, class: "w-100" %>
-      <%= "↑ Shiftキーを押しながら画像を複数選択してください。" %>
-      <div class="input-group mb-3 mt-4">
-        <%= f.text_field :title, class:"form-control", placeholder:"タイトル" %>
-      </div>
-      <%= f.text_area :contents, class:"form-control", rows:"3", placeholder:"投稿内容" %>
-
-      <%= f.fields_for :post_tags, @post.post_tags.build do |post_tag| %>
-      <div class="field">
-        <%= render 'post_tag_fields', f: post_tag %>
-      </div>
-      <% end %>
-      <div class="links">
-        <%= link_to_add_association 'タグを追加', f, :post_tags %>
-      </div>
-      <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info my-4" %>
+  <%= form_with model: @post, local: true do |f| %>
+    <%= f.file_field :images, multiple: true, class: "w-100" %>
+    <%= "↑ Shiftキーを押しながら画像を複数選択してください。" %>
+    <div class="input-group mb-3 mt-4">
+      <%= f.text_field :title, class:"form-control", placeholder:"タイトル" %>
+    </div>
+    <%= f.text_area :contents, class:"form-control", rows:"3", placeholder:"投稿内容" %>
+    <%= f.fields_for :post_tags, @post.post_tags.build do |post_tag| %>
+    <div class="field">
+      <%= render 'post_tag_fields', f: post_tag %>
+    </div>
     <% end %>
+    <div class="links">
+      <%= link_to_add_association 'タグを追加', f, :post_tags %>
+    </div>
+    <div class="row mt-4 pb-5">
+      <div class="form-inline mx-auto">
+        <%= f.submit '公開', :name => 'post', class: 'mr-5 btn btn-sm btn-warning text-white' %>
+        <%= f.submit '下書き保存', :name => 'draft', class: 'mr-5 btn btn-sm btn-outline-secondary' %>
+      </div>
+    </div>
+  <% end %>
 </div>
