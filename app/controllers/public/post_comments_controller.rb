@@ -1,4 +1,6 @@
 class Public::PostCommentsController < ApplicationController
+   before_action :authenticate_user!
+
   def create
     @post = Post.find(params[:post_id])
     comment = current_user.post_comments.new(post_comment_params)
@@ -6,7 +8,12 @@ class Public::PostCommentsController < ApplicationController
     comment.save
     redirect_to post_path(@post)
   end
-  
+
+  def index
+    @post = Post.find(params[:post_id])
+    @post_comments = @post.comment.all
+  end
+
   def destroy
     PostComment.find(params[:id]).destroy
     redirect_to post_path(params[:post_id])

@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2022_12_24_073601) do
     t.integer "user_id", null: false
     t.string "title", null: false
     t.text "contents", null: false
+    t.boolean "is_draft", default: false
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

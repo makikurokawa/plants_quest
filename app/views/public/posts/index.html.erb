@@ -9,6 +9,12 @@
         <%= f.search_field :title %>
         <%= f.submit %>
       <% end %>
+
+      <div class="flash-notifications">
+        <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, class: key) %>
+        <% end %>
+      </div>
       <h5 class="my-3">投稿一覧</h5>
       <table class="table-bordered">
         <thead>
