@@ -2,15 +2,17 @@
   <div class="row">
     <h4 class="my-5">
       <%= @post.title %>
-      <% @post.tags.each do |tag| %>
-        <span><%= tag.tag_name %></span>
-      <% end %>
     </h4>
+  </div>
+  <div class="row">
+    <% @post.tags.each do |tag| %>
+      <span><%= tag.tag_name %></span>
+    <% end %>
   </div>
   <div class="images">
     <% if @post.images.attached? %>
       <% @post.images.each do |image| %>
-        <%= image.get_image(100,100) %>
+        <%= image_tag image.variant(resize: "200x200").processed %>
       <% end %>
     <% end %>
   </div>

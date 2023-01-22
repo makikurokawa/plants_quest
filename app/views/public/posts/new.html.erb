@@ -17,10 +17,16 @@
     <div class="links">
       <%= link_to_add_association 'タグを追加', f, :post_tags %>
     </div>
+    <%= f.radio_button :is_draft, :false %>
+    <%= f.label :is_draft, "公開" %>
+        <%= f.radio_button :is_draft, :true %>
+    <%= f.label :is_draft, "下書き" %>
+
     <div class="row mt-4 pb-5">
       <div class="form-inline mx-auto">
-        <%= f.submit '公開', :name => 'post', class: 'mr-5 btn btn-sm btn-warning text-white' %>
-        <%= f.submit '下書き保存', :name => 'draft', class: 'mr-5 btn btn-sm btn-outline-secondary' %>
+        
+        <%= f.submit '公開' ,class: 'mr-5 btn btn-sm btn-warning text-white' %>
+        
       </div>
     </div>
   <% end %>

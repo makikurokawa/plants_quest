@@ -2,14 +2,14 @@
   <div class="row">
     <h4 class="bg-light mt-5">マイページ</h4>
   </div>
-  <div class="row">
+  <div class="row col-10">
     <table class="table table-borderless">
       <tr>
         <th style="width: 10%">登録情報</th>
        <td><%= link_to "編集する", users_infomation_edit_path, class: 'btn btn-md btn-success px-3' %></td>
       </tr>
     </table>
-    <table class="table table-bordered border-dark col-6">
+    <table class="table table-bordered border-dark">
       <tbody>
         <tr>
           <th class="table-secondary col-2">氏名</th><td class="col-4"><%= @user.name %></td>
@@ -25,28 +25,43 @@
         </tr>
       </tbody>
     </table>
-    <table class="table table-borderless">
-      <tr>
-        <th style="width: 20%">投稿済み記事一覧</th>
-        <td><%= link_to "一覧をみる", posts_path, class: 'btn btn-md btn-primary px-3' %></td>
-      </tr>
-    </table>
   </div>
   <div class="row mx-auto">
     <%= link_to "新規投稿", new_post_path, class: 'btn btn-lg btn-warning px-5 my-5' %>
   </div>
-
-
+  <div class="table-name">
+    <h4>作成記事一覧</h4>
+  </div>
+    <table class="table table-bordered border-dark">
+      <thead>
+        <tr>
+          <th class="col-2">タイトル</th>
+          <th class="col-2">作成日時</th>
+          <th class="col-2">状態</th>
+          <th class="col-2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= link_to post.title, post_path(post.id) %></td>
+            <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
+          <% if @user == current_user %>
+            <td><%= post.is_draft %></td>
+            <td><%= link_to "記事編集", edit_post_path(post.id), class: "btn btn-sm btn-success" %></td>
+          <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
     <div class="table-name">
       <h4>いいね（ブックマーク）一覧</h4>
     </div>
-  <div class="row col-12">
-    <table>
+    <table class="table table-bordered border-dark col-5 my-3">
       <thead>
         <tr>
-          <th class="col-5">投稿者名</th>
-          <th class="col-5">タイトル</th>
-          <th class="col-5">本文</th>
+          <th class="col-2">投稿者名</th>
+          <th class="col-3">タイトル</th>
         </tr>
       </thead>
       <tbody>
@@ -58,12 +73,8 @@
                 <%= favorite.post.title %>
               <% end %>
             </td>
-            <td><%= favorite.post.contents %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-  </div>
-
-
 </div>

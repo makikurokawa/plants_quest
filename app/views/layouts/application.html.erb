@@ -37,6 +37,9 @@
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
             </li>
           <% elsif admin_signed_in? %>
+          <p class="mr-5">
+              管理者としてログインしました！
+            </p>
             <li class="nav-item px-3">
               <%= link_to "投稿記事一覧", admin_posts_path %>
             </li>

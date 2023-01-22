@@ -2,7 +2,7 @@
    <div class="row">
     <h5 class="text-dark bg-light m-4 mb-0">記事を編集</h5>
   </div>
-  <%= form_with model: @post, url: public_post_path(@post.id), method: :patch, local: true do |f| %>
+  <%= form_with model: @post, url: post_path(@post.id), method: :patch, local: true do |f| %>
     <%= f.file_field :images, multiple: true, class: "w-100" %>
     <%= "↑ Shiftキーを押しながら画像を複数選択してください。" %>
     <div class="input-group mb-3 mt-4">
@@ -31,6 +31,4 @@
       <u><%= link_to "記事を削除", "/posts/#{@post.id}", method: :delete, data: {confirm: "この記事を削除しますか？"}, class:'text-danger' %></u>
     </div>
   <% end %>
-    </div>
-  <% end %>
- </div>
+</div>
