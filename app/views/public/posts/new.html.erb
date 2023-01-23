@@ -10,7 +10,7 @@
     </div>
     <%= f.text_area :contents, class:"form-control", rows:"3", placeholder:"投稿内容" %>
     <%= f.fields_for :post_tags, @post.post_tags.build do |post_tag| %>
-    <div class="field">
+    <div class="field my-3">
       <%= render 'post_tag_fields', f: post_tag %>
     </div>
     <% end %>
@@ -25,7 +25,7 @@
     <div class="row mt-4 pb-5">
       <div class="form-inline mx-auto">
         
-        <%= f.submit '公開' ,class: 'mr-5 btn btn-sm btn-warning text-white' %>
+        <%= f.submit '送信' ,class: 'mr-5 btn btn-sm btn-warning text-white' %>
         
       </div>
     </div>

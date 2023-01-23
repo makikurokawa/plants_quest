@@ -10,7 +10,7 @@
     </h6>
   </div>
   <div class="post-infomation">
-    <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+    <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
     <p>投稿者：<%= @post.user.nickname %></p>
   </div>
   <div class="images">
@@ -46,17 +46,17 @@
   <div class="comment">
     <p>コメント件数：<%= @post.post_comments.count %></p>
     <table class="table">
-      <th class="col-2">投稿日時</th>
-    　<th class="col-7">コメント</th>
+      <th class="col-2">投稿日</th>
+    　<th class="col-6">コメント</th>
     　<th class="col-2">投稿者</th>
-    　<th class="col-1"></th>
+    　<th class="col-2"></th>
        <% @post.post_comments.each do |post_comment| %>
       <tr>
         <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
         <td><%= post_comment.comment %></td>
         <td><%= post_comment.user.nickname %></td>
         <% if post_comment.user == current_user %>
-          <td><%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-danger"%></td>
+          <td><%= link_to "コメント削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-danger"%></td>
         <% end %>
       </tr>
       <% end %>

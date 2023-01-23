@@ -48,28 +48,11 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-      if params[:publicize_draft]
-        @post.attributes = post_params.merge(is_draft: false)
-        if @post.save
-          redirect_to post_path(@post.id), notice: "下書きを公開しました！"
-        else
-          @post.is_draft = true
-          render :edit, alert: "公開できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
-        end
-      elsif params[:update_post]
-        @post.attributes = post_params
-        if @post.save
-          redirect_to post_path(@post.id), notice: "更新しました！"
-        else
-          render :edit, alert: "更新できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
-        end
-      else
-        if @post.update(post_params)
-          redirect_to post_path(@post.id), notice: "下書きを更新しました！"
-        else
-          render :edit, alert: "更新できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
-        end
-      end
+    if @post.update(post_params)
+      redirect_to post_path(@post.id), notice: "更新しました！"
+    else
+      render :edit, alert: "更新できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
+    end
   end
 
   def destroy
