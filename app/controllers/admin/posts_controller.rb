@@ -14,7 +14,7 @@ class Admin::PostsController < ApplicationController
     @post_comment.destroy
     redirect_to admin_post_path(@post.id)
   end
-  
+
   private
   def post_params
     params.require(:post).permit(:title, :contents, :status, :is_draft, images: [], post_tags_attributes: [:tag_id, :_destroy])

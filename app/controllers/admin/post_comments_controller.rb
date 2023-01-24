@@ -5,8 +5,11 @@ class Admin::PostCommentsController < ApplicationController
   end
 
   def destroy
-    PostComment.find(params[:post_id]).destroy
-    redirect_to post_path(params[:post_id])
+    post_comment = PostComment.find(params[:id])
+    @post = post_comment.post
+    post_comment.destroy
+    @post_comment = @post.post_comments.all
+    render "admin/posts/show"
   end
 
   private

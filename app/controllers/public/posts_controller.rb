@@ -33,10 +33,10 @@ class Public::PostsController < ApplicationController
     @posts = Post.all
     if params[:tag_ids]
       @posts = []
-      params[tag_ids].each do |key, value|
+      params[:tag_ids].each do |key, value|
         if value == "1"
           post_tags = Tag.find_by(tag_name: key).posts
-          @posts = @posts.enpty? ? post_tags : @posts & post_tags
+          @posts = @posts.empty? ? post_tags : @posts & post_tags
         end
       end
     end

@@ -33,7 +33,7 @@
         <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
         <td><%= post_comment.comment %></td>
         <td><%= post_comment.user.nickname %></td>
-        <td><%= link_to "コメント削除", admin_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-danger"%></td>
+        <td><%= link_to "コメント削除", admin_post_comment_path(post_comment), method: :delete, class: "btn btn-danger"%></td>
       </tr>
       <% end %>
     </table>
