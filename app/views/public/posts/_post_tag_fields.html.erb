@@ -1,9 +1,8 @@
 <div class="row">
-    <p>必ず１つ以上タグを選択してください。</p>
     <table class="table table-bordeless">
       <tr>
-          <th class="col-1"><%= f.collection_select :tag_id, Tag.all, :id, :tag_name %></th>
-          <td><%= link_to_remove_association '削除', f, class: 'btn btn-danger' %></td>
+        <th class="col-1"><%= f.collection_select :tag_id, Tag.all, :id, :tag_name %></th>
+        <td><%= link_to_remove_association '削除', f, class: 'btn btn-sm btn-danger' %></td>
       </tr>
     </table>
 </div>

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h4 class="my-3">新規登録</h4>
+    <h4 class="bg-light my-5">新規登録</h4>
   </div>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
@@ -31,9 +31,13 @@
         <div class="action">
           <%= f.submit "新規登録", class: "btn btn-success btn-lg px-5" %>
         </div>
+        <div class="col-1">
+        </div>
+        <div class="log-in mr-5">
+          <%= render "public/shared/links" %>
+        </div>
       </div>
     </div>
   <% end %>
-  <%= render "public/shared/links" %>
 </div>
 

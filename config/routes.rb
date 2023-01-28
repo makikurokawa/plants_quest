@@ -8,16 +8,17 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
   registrations: "public/registrations",
-  passwords: 'public/passwords'
+  passwords: 'public/passwords',
+  sessions: "public/sessions"
 
 }
 
   scope module: :public do
-    get 'users/my_page' => 'users#show'
     get 'users/infomation/edit' => 'users#edit'
     patch 'users/infomation' => 'users#update'
     get 'users/confirm' => 'users#confirm'
     patch 'users/destroy' => 'users#destroy'
+    resources :users, only: [:show]
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resources :post_comments, only: [:create, :destroy]
       resources :favorites, only: [:create, :destroy]

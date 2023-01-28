@@ -9,19 +9,19 @@
        <td><%= link_to "編集する", users_infomation_edit_path, class: 'btn btn-md btn-success px-3' %></td>
       </tr>
     </table>
-    <table class="table table-bordered border-dark">
+    <table class="table table-bordered border-light col-9">
       <tbody>
         <tr>
-          <th class="table-secondary col-2">氏名</th><td class="col-4"><%= @user.name %></td>
+          <th class="table-light col-1">氏名</th><td class="col-4"><%= @user.name %></td>
         </tr>
         <tr>
-          <th class="table-secondary">ニックネーム</th><td><%= @user.nickname %></td>
+          <th class="table-light">ニックネーム</th><td><%= @user.nickname %></td>
         </tr>
         <tr>
-          <th class="table-secondary">自己紹介文</th><td><%= @user.introduction %></td>
+          <th class="table-light">自己紹介文</th><td><%= @user.introduction %></td>
         </tr>
         <tr>
-          <th class="table-secondary">メールアドレス</th><td><%= @user.email %></td>
+          <th class="table-light">メールアドレス</th><td><%= @user.email %></td>
         </tr>
       </tbody>
     </table>
@@ -29,16 +29,16 @@
   <div class="row mx-auto">
     <%= link_to "新規投稿", new_post_path, class: 'btn btn-lg btn-warning px-5 my-5' %>
   </div>
-  <div class="table-name">
-    <h4>作成記事一覧</h4>
+  <div class="row">
+    <h4 class="bg-light mb-3">作成記事一覧</h4>
   </div>
-    <table class="table table-bordered border-dark">
+    <table class="table">
       <thead>
         <tr>
           <th class="col-2">タイトル</th>
           <th class="col-2">作成日時</th>
           <th class="col-2">状態</th>
-          <th class="col-2"></th>
+          <th class="col-1"></th>
         </tr>
       </thead>
       <tbody>
@@ -47,17 +47,23 @@
             <td><%= link_to post.title, post_path(post.id) %></td>
             <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
           <% if @user == current_user %>
-            <td><%= post.is_draft %></td>
+            <td>
+              <% if post.is_draft == false %>
+                <P>公開中</P>
+              <% else %>
+                <p>未公開</p>
+              <% end %>
+            </td>
             <td><%= link_to "記事編集", edit_post_path(post.id), class: "btn btn-sm btn-success" %></td>
           <% end %>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <div class="table-name">
-      <h4>いいね（ブックマーク）一覧</h4>
+    <div class="row">
+      <h4 class="bg-light mb-3">いいね（ブックマーク）一覧</h4>
     </div>
-    <table class="table table-bordered border-dark col-5 my-3">
+    <table class="table col-5 my-3">
       <thead>
         <tr>
           <th class="col-2">投稿者名</th>

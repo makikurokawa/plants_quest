@@ -3,7 +3,7 @@
     <h4 class="my-5">
       <%= @post.title %>
     </h4>
-    <h6 class="my-5 mx-3 bg-warning">
+    <h6 class="my-5 mx-3" style="background-color: #99CC66">
       <% @post.tags.each do |tag| %>
         <span><%= tag.tag_name %></span>
       <% end %>
@@ -11,7 +11,11 @@
   </div>
   <div class="post-infomation">
     <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-    <p>投稿者：<%= @post.user.nickname %></p>
+    <p>投稿者：
+      <%= link_to user_path(@post.user.id) do %>
+        <%= @post.user.nickname %>
+      <% end %>
+    </p>
   </div>
   <div class="images">
     <% if @post.images.attached? %>

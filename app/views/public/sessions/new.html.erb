@@ -1,23 +1,31 @@
 <div class="container">
   <div class="row">
-    <h4 class="my-3">ログイン</h4>
+    <h4 class="bg-light my-5">ログイン</h4>
   </div>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-group">
     <div class="row mb-3">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= f.label  "メールアドレス", class: "col-3" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control col-3", placeholder: "sample@example.com" %>
     </div>
     <div class="row mb-3">
-      <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+      <%= f.label "パスワード(6文字以上）", class: "col-3" %>
+    <%= f.password_field :password, autocomplete: "current-password", class: "form-control col-3" %>
     </div>
-    <div class="actions">
-      <%= f.submit "Log in" %>
+    <div class="row mb-3">
+      <div class="col-3">
+      </div>
+      <div class="actions">
+        <%= f.submit "ログイン", class: "btn btn-success btn-lg px-5" %>
+      </div>
+      <div class="col-1">
+      </div>
+      <div class="log-in mr-5">
+        <%= render "public/shared/links" %>
+      </div>
     </div>
   </div>
   <% end %>
-  <%= render "public/shared/links" %>
 </div>
 
 

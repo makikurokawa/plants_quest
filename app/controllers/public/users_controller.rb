@@ -1,8 +1,9 @@
 class Public::UsersController < ApplicationController
   def show
-    @user = current_user
+    @user = User.find(params[:id])
     @favorites = Favorite.where(user_id: current_user.id)
-    @posts = @user.posts.all
+    @current_user = current_user
+    @posts = @current_user.posts.all
   end
 
   def edit
