@@ -27,6 +27,7 @@
   <div class="contents">
     <p><%= @post.contents %></p>
     <% if @post.user == current_user %>
+      <%= link_to "記事を編集", edit_post_path(@post), class: "btn btn-success my-3"%>
       <%= link_to "記事を削除", post_path(@post), method: :delete, class: "btn btn-danger my-3"%>
     <% end %>
   </div>

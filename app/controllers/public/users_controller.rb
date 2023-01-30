@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @favorites = Favorite.where(user_id: current_user.id)
     @current_user = current_user
-    @posts = @current_user.posts.all
+    @posts = @user.posts.all
   end
 
   def edit
@@ -13,10 +13,11 @@ class Public::UsersController < ApplicationController
   def update
     user = current_user
     user.update(user_params)
-    redirect_to users_my_page_path
+    redirect_to user_path(user.id)
   end
 
   def confirm
+    @user = current_user
   end
 
   def destroy

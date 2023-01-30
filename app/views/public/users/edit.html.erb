@@ -24,9 +24,11 @@
           <%= f.text_field :email, class: 'form-control email col-3' %>
         </div>
         <div class="row my-5">
-          <div class="col-3"></div>
+          <div class="col-2"></div>
           <%= f.submit '編集内容を保存', class: 'btn btn-success px-5' %>
-          <div class="col-3"></div>
+          <div class="col-1"></div>
+          <%= link_to 'マイページへ戻る', user_path(@user), class: 'btn btn-warning px-3' %>
+          <div class="col-1"></div>
           <%= link_to '退会する', users_confirm_path, class: 'btn btn-danger px-3' %>
         </div>
       </div>

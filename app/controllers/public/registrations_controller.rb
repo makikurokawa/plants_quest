@@ -4,7 +4,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   before_action :check_guest, only: %i[update destroy]
 
   def after_sign_up_path_for(resource)
-    users_my_page_path
+    user_path(current_user)
   end
 
   before_action :configure_sign_up_params, only: [:create]

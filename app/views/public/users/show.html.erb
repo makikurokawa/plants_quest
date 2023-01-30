@@ -1,19 +1,18 @@
 <div class="container">
   <div class="row">
-    <h4 class="bg-light mt-5">マイページ</h4>
+    <h4 class="bg-light mt-5"><%= @user.nickname %>さんのページ</h4>
   </div>
   <div class="row col-10">
     <table class="table table-borderless">
       <tr>
         <th style="width: 10%">登録情報</th>
-       <td><%= link_to "編集する", users_infomation_edit_path, class: 'btn btn-md btn-success px-3' %></td>
+        <% if @user == current_user %>
+        <td><%= link_to "編集する", users_infomation_edit_path, class: 'btn btn-md btn-success px-3' %></td>
+        <% end %>
       </tr>
     </table>
     <table class="table table-bordered border-light col-9">
       <tbody>
-        <tr>
-          <th class="table-light col-1">氏名</th><td class="col-4"><%= @user.name %></td>
-        </tr>
         <tr>
           <th class="table-light">ニックネーム</th><td><%= @user.nickname %></td>
         </tr>
@@ -37,7 +36,9 @@
         <tr>
           <th class="col-2">タイトル</th>
           <th class="col-2">作成日時</th>
+          <% if @user == current_user %>
           <th class="col-2">状態</th>
+          <% end %>
           <th class="col-1"></th>
         </tr>
       </thead>

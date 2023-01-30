@@ -4,19 +4,19 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-　　@post = Post.new(post_params)
+    @post = Post.new(post_params)
     @post.user_id = current_user.id
     if params[:post][:is_draft] == "false"
       if @post.save
-        redirect_to posts_path, notice: "投稿しました！"
+        redirect_to posts_path
       else
-        render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
+        render :new
       end
     else
       if @post.save
-        redirect_to users_my_page_path, notice: "下書きを保存しました！"
+        redirect_to posts_path
       else
-        render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
+        render :new
       end
     end
   end
@@ -49,9 +49,9 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post.id), notice: "更新しました！"
+      redirect_to posts_path
     else
-      render :edit, alert: "更新できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
+      render :edit
     end
   end
 
