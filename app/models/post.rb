@@ -1,5 +1,8 @@
 class Post < ApplicationRecord
   belongs_to :user
+
+  scope :active, -> { where(is_draft: false) }
+
   has_many :favorites, dependent: :destroy
   has_many_attached :images
   has_many :post_tags

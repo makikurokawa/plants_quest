@@ -3,7 +3,8 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @favorites = Favorite.where(user_id: current_user.id)
     @current_user = current_user
-    @posts = @user.posts.all
+    @posts = @user.posts
+    @posts = @posts.active if current_user != @user
   end
 
   def edit

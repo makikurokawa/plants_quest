@@ -1,8 +1,10 @@
 <div class="row">
+  <div class="nested-fields field">
     <table class="table table-bordeless">
       <tr>
         <th class="col-1"><%= f.collection_select :tag_id, Tag.all, :id, :tag_name %></th>
         <td><%= link_to_remove_association '削除', f, class: 'btn btn-sm btn-danger' %></td>
       </tr>
     </table>
+  </div>
 </div>

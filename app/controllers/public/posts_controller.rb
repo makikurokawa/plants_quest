@@ -63,7 +63,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :contents,  :is_draft, images: [], post_tags_attributes: [:tag_id, :_destroy])
+    params.require(:post).permit(:title, :contents,  :is_draft, images: [], post_tags_attributes: [:id, :tag_id, :_destroy])
   end
 
 end

@@ -18,19 +18,18 @@
         <span><%= tag.tag_name %></span>
       <% end %>
     </h6>
+    </div>
+
+    <%= f.fields_for :post_tags do |post_tag| %>
+      <div class="field">
+        <%= render 'post_tag_fields', :f => post_tag %>
+      </div>
+    <% end %>
+    <div class="links">
       <%= link_to_add_association 'タグを追加', f, :post_tags %>
     </div>
-    <%= f.fields_for :post_tags, @post.post_tags.build do |post_tag| %>
-    <div class="field">
-      <div class="nested-fields">
-        <div class="col-md-6">
-          <%= f.collection_select :tag_id, Tag.all, :id, :tag_name %>
-        </div>
-        <%= link_to_remove_association '削除', f, class: 'btn btn-danger' %>
-      </div>
-    </div>
-    <% end %>
-    
+
+
     <div class="row mt-4 pb-5">
       <div class="form-inline mx-auto">
         <%= f.radio_button :is_draft, :false %>
