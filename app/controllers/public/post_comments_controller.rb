@@ -11,7 +11,7 @@ class Public::PostCommentsController < ApplicationController
 
   def index
     @post = Post.find(params[:post_id])
-    @post_comments = @post.comment.all
+    @post_comments = @post.comment.page(params[:page])
   end
 
   def destroy

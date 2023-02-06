@@ -14,29 +14,29 @@
     </thead>
     <tbody>
       <% @users.each do |user| %>
-      <tr>
-        <td>
-          <%= user.id %>
-        </td>
-        <td>
-          <%= link_to user.name, admin_user_path(user.id) %>
-        </td>
-        <td>
-          <%= user.nickname %>
-        </td>
-        <td>
-          <%= user.email %>
-        </td>
-        <% if user.is_deleted == false %>
-          <td class="text-success font-weight-bold">
-            有効
+        <tr>
+          <td>
+            <%= user.id %>
           </td>
-        <% else %>
-          <td class="text-muted font-weight-bold">
-            退会
+          <td>
+            <%= link_to user.name, admin_user_path(user.id) %>
           </td>
-        <% end %>
-      </tr>
+          <td>
+            <%= user.nickname %>
+          </td>
+          <td>
+            <%= user.email %>
+          </td>
+          <% if user.is_deleted == false %>
+            <td class="text-success font-weight-bold">
+              有効
+            </td>
+          <% else %>
+            <td class="text-muted font-weight-bold">
+              退会
+            </td>
+          <% end %>
+        </tr>
       <% end %>
     </tbody>
   </table>

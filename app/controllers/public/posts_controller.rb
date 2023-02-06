@@ -30,7 +30,7 @@ class Public::PostsController < ApplicationController
   def index
     @search = Post.ransack(params[:search])
     @posts = @search.result(distinct: true)
-    @posts = Post.all
+    @posts = Post.page(params[:page])
     if params[:tag_ids]
       @posts = []
       params[:tag_ids].each do |key, value|

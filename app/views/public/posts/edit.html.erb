@@ -4,23 +4,22 @@
   </div>
   <div class="form-group">
     <%= form_with model: @post, url: post_path(@post.id), method: :patch, local: true do |f| %>
-    <%= f.file_field :images, multiple: true, class: "w-100" %>
-    <%= "↑ Shiftキーを押しながら画像を複数選択してください。" %>
-    <div class="input-group mb-3 mt-4">
-      <%= f.text_field :title, class:"form-control", placeholder:"タイトル" %>
-    </div>
-    <%= f.text_area :contents, class:"form-control", rows:"3", placeholder:"投稿内容" %>
-    <div class="links">
-      <p>既に登録してあるタグは選べません。</p>
-      <span>既に選択しているタグ</span>
-      <h6 class="my-1 mx-3 bg-warning">
+      <%= f.file_field :images, multiple: true, class: "w-100" %>
+      <%= "↑ Shiftキーを押しながら画像を複数選択してください。" %>
+      <div class="input-group mb-3 mt-4">
+        <%= f.text_field :title, class:"form-control", placeholder:"タイトル" %>
+      </div>
+      <%= f.text_area :contents, class:"form-control", rows:"3", placeholder:"投稿内容" %>
+      <div class="links">
+        <p>既に登録してあるタグは選べません。</p>
+        <span>既に選択しているタグ</span>
+        <h6 class="my-1 mx-3 bg-warning">
         <% @post.tags.each do |tag| %>
-        <span><%= tag.tag_name %></span>
-      <% end %>
-    </h6>
-    </div>
-
-    <%= f.fields_for :post_tags do |post_tag| %>
+          <span><%= tag.tag_name %></span>
+        <% end %>
+        </h6>
+      </div>
+      <%= f.fields_for :post_tags do |post_tag| %>
       <div class="field">
         <%= render 'post_tag_fields', :f => post_tag %>
       </div>
@@ -28,8 +27,6 @@
     <div class="links">
       <%= link_to_add_association 'タグを追加', f, :post_tags %>
     </div>
-
-
     <div class="row mt-4 pb-5">
       <div class="form-inline mx-auto">
         <%= f.radio_button :is_draft, :false %>
@@ -39,12 +36,11 @@
       </div>
     </div>
     <div class="btn">
-       <%= f.submit '更新' ,class: 'mx-auto btn btn-sm btn-warning text-white' %>
+      <%= f.submit '更新' ,class: 'mx-auto btn btn-sm btn-warning text-white' %>
     </div>
+    <% end %>
   </div>
-
-    <div class="mt-4 pb-3 text-center">
-      <u><%= link_to "記事を削除", "/posts/#{@post.id}", method: :delete, data: {confirm: "この記事を削除しますか？"}, class:'text-danger' %></u>
-    </div>
-  <% end %>
+  <div class="mt-4 pb-3 text-center">
+    <u><%= link_to "記事を削除", "/posts/#{@post.id}", method: :delete, data: {confirm: "この記事を削除しますか？"}, class:'text-danger' %></u>
+  </div>
 </div>

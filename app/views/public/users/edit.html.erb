@@ -4,35 +4,35 @@
   </div>
 
   <%= form_with model: @user, url: users_infomation_path, method: :patch do |f| %>
-  <div class="row">
-    <div class="col-8">
-      <div class="form-group">
-        <div class="row my-2">
-          <%= f.label "氏名", class: "col-3" %>
-          <%= f.text_field :name, class: 'form-control name col-3' %>
-        </div>
-        <div class="row my-2">
-          <%= f.label "ニックネーム", class: "col-3" %>
-          <%= f.text_field :nickname, class: 'form-control nickname col-3' %>
-        </div>
-        <div class="row my-2">
-          <%= f.label "自己紹介文", class: "col-3" %>
-          <%= f.text_area :introduction, class: 'form-control introduction col-5' %>
-        </div>
-        <div class="row my-2">
-          <%= f.label "メールアドレス", class: "col-3" %>
-          <%= f.text_field :email, class: 'form-control email col-3' %>
-        </div>
-        <div class="row my-5">
-          <div class="col-2"></div>
-          <%= f.submit '編集内容を保存', class: 'btn btn-success px-5' %>
-          <div class="col-1"></div>
-          <%= link_to 'マイページへ戻る', user_path(@user), class: 'btn btn-warning px-3' %>
-          <div class="col-1"></div>
-          <%= link_to '退会する', users_confirm_path, class: 'btn btn-danger px-3' %>
+    <div class="row">
+      <div class="col-8">
+        <div class="form-group">
+          <div class="row my-2">
+            <%= f.label "氏名", class: "col-3" %>
+            <%= f.text_field :name, class: 'form-control name col-3' %>
+          </div>
+          <div class="row my-2">
+            <%= f.label "ニックネーム", class: "col-3" %>
+            <%= f.text_field :nickname, class: 'form-control nickname col-3' %>
+          </div>
+          <div class="row my-2">
+            <%= f.label "自己紹介文", class: "col-3" %>
+            <%= f.text_area :introduction, class: 'form-control introduction col-5' %>
+          </div>
+          <div class="row my-2">
+            <%= f.label "メールアドレス", class: "col-3" %>
+            <%= f.text_field :email, class: 'form-control email col-3' %>
+          </div>
+          <div class="row my-5">
+            <div class="col-2"></div>
+            <%= f.submit '編集内容を保存', class: 'btn btn-success px-5' %>
+            <div class="col-1"></div>
+            <%= link_to 'マイページへ戻る', user_path(@user), class: 'btn btn-warning px-3' %>
+            <div class="col-1"></div>
+            <%= link_to '退会する', users_confirm_path, class: 'btn btn-danger px-3' %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   <% end %>
 </div>

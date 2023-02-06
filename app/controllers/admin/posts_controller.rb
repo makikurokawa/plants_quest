@@ -5,7 +5,7 @@ class Admin::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @post_comment = @post.post_comments.all
+    @post_comment = @post.post_comments.page(params[:page])
   end
 
   def destroy
@@ -16,6 +16,7 @@ class Admin::PostsController < ApplicationController
   end
 
   private
+  
   def post_params
     params.require(:post).permit(:title, :contents, :status, :is_draft, images: [], post_tags_attributes: [:tag_id, :_destroy])
   end
