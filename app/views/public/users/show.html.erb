@@ -19,9 +19,6 @@
         <tr>
           <th class="table-light">自己紹介文</th><td><%= @user.introduction %></td>
         </tr>
-        <tr>
-          <th class="table-light">メールアドレス</th><td><%= @user.email %></td>
-        </tr>
       </tbody>
     </table>
   </div>
@@ -29,64 +26,64 @@
     <div class="row mx-auto">
       <%= link_to "新規投稿", new_post_path, class: 'btn btn-lg btn-warning px-5 my-5' %>
     </div>
-    <div class="row">
-      <h4 class="bg-light mb-3">作成記事一覧</h4>
-    </div>
-      <table class="table">
+  <% end %>
+  <div class="row">
+    <h4 class="bg-light my-3"><%= @user.nickname %>さんの作成記事一覧</h4>
+  </div>
+    <table class="table">
+      <thead>
+        <% if @user == current_user %>
+          <tr>
+            <th class="col-2">タイトル</th>
+            <th class="col-2">作成日時</th>
+            <th class="col-2">状態</th>
+            <th class="col-1"></th>
+          </tr>
+        <% else %>
+          <tr>
+            <th class="col-3">タイトル</th>
+            <th class="col-4">作成日時</th>
+          </tr>
+        <% end %>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= link_to post.title, post_path(post.id) %></td>
+            <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
+            <% if @user == current_user %>
+              <td>
+                <p><%= !post.is_draft? ? "公開中" : "非公開" %></p>
+              </td>
+              <td><%= link_to "記事編集", edit_post_path(post.id), class: "btn btn-sm btn-success" %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% if @user == current_user %>
+      <div class="row">
+        <h4 class="bg-light my-3">いいね（ブックマーク）一覧</h4>
+      </div>
+      <table class="table col-5 my-3">
         <thead>
-          <% if @user == current_user %>
-            <tr>
-              <th class="col-2">タイトル</th>
-              <th class="col-2">作成日時</th>
-              <th class="col-2">状態</th>
-              <th class="col-1"></th>
-            </tr>
-          <% else %>
-            <tr>
-              <th class="col-3">タイトル</th>
-              <th class="col-4">作成日時</th>
-            </tr>
-          <% end %>
+          <tr>
+            <th class="col-2">投稿者名</th>
+            <th class="col-3">タイトル</th>
+          </tr>
         </thead>
         <tbody>
-          <% @posts.each do |post| %>
+          <% @favorites.each do |favorite| %>
             <tr>
-              <td><%= link_to post.title, post_path(post.id) %></td>
-              <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
-              <% if @user == current_user %>
-                <td>
-                  <p><%= !post.is_draft? ? "公開中" : "非公開" %></p>
-                </td>
-                <td><%= link_to "記事編集", edit_post_path(post.id), class: "btn btn-sm btn-success" %></td>
-              <% end %>
+              <td><%= favorite.post.user.nickname %></td>
+              <td>
+                <%= link_to post_path(favorite.post) do %>
+                  <%= favorite.post.title %>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>
       </table>
-      <% if @user == current_user %>
-        <div class="row">
-          <h4 class="bg-light my-3">いいね（ブックマーク）一覧</h4>
-        </div>
-        <table class="table col-5 my-3">
-          <thead>
-            <tr>
-              <th class="col-2">投稿者名</th>
-            <th class="col-3">タイトル</th>
-          </tr>
-          </thead>
-          <tbody>
-            <% @favorites.each do |favorite| %>
-              <tr>
-                <td><%= favorite.post.user.nickname %></td>
-                <td>
-                  <%= link_to post_path(favorite.post) do %>
-                    <%= favorite.post.title %>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% end %>
     <% end %>
-</div>
+  </div>
