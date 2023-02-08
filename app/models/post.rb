@@ -15,6 +15,14 @@ class Post < ApplicationRecord
     favorites.where(user_id: user).exists?
   end
 
+  def self.search(search)
+    if search
+      where(['title LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
+
   with_options presence: true, on: :publicize do
     validates :title
     validates :contents

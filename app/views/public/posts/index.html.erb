@@ -4,10 +4,10 @@
   </div>
   <div class="row">
     <div class="col-9">
-      <%= search_form_for @search do |f| %>
-        <%= f.label :記事タイトルで検索 %>
-        <%= f.search_field :title %>
-        <%= f.submit %>
+      <%= form_tag(posts_path, :method => "get") do  %>
+        <p>記事タイトルで検索</p>
+        <%= text_field_tag :search %>
+        <%= submit_tag "Search" ,:title => nil ,class: "button is-info" %>
       <% end %>
 
       <div class="flash-notifications my-5">
