@@ -27,6 +27,7 @@
       <%= link_to "新規投稿", new_post_path, class: 'btn btn-lg btn-warning px-5 my-5' %>
     </div>
   <% end %>
+  <% if @user != User.guest %>
   <div class="row">
     <h4 class="bg-light my-3"><%= @user.nickname %>さんの作成記事一覧</h4>
   </div>
@@ -85,5 +86,6 @@
           <% end %>
         </tbody>
       </table>
+    <% end %>
     <% end %>
   </div>

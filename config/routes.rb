@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :admins, controllers: {
+  registrations: "admin/registrations",
   sessions: "admin/sessions"
 }
 
